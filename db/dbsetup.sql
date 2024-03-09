@@ -1,0 +1,36 @@
+-- perfect approach
+CREATE TABLE warrior (
+    id BIGSERIAL NOT NULL PRIMARY KEY UNIQUE,
+    google_id VARCHAR(200) NOT NULL UNIQUE,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    picture TEXT NOT NULL,
+    join_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE post (
+    id BIGSERIAL NOT NULL PRIMARY KEY UNIQUE,
+    texte TEXT NOT NULL,
+    post_pic TEXT,
+    warrior_id BIGSERIAL NOT NULL REFERENCES warrior(id),
+    warrior_name VARCHAR(50) NOT NULL,
+    warrior_pic TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE comment (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    cont TEXT NOT NULL,
+    commenter_id BIGSERIAL NOT NULL,
+    commenter_name VARCHAR(50) NOT NULL,
+    commenter_pic TEXT NOT NULL,
+    post_id BIGSERIAL NOT NULL REFERENCES post(id),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE likes (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    warrior_id BIGSERIAL NOT NULL,
+    post_id BIGSERIAL NOT NULL REFERENCES post(id),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

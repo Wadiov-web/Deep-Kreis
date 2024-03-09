@@ -1,0 +1,84 @@
+*{
+    /* background-color: rgb(21, 21, 21); */
+    padding: 0;
+    margin: 0;
+}
+
+.head{
+    background-color: rgb(21, 21, 21); 
+    color: rgb(215, 215, 215);
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.head h1{
+    margin-left: 10%;
+}
+.nav{
+    background-color: rgb(21, 21, 21); 
+    display: flex;
+    /* text-align: center;
+    align-items: center; */
+    justify-content: center;
+    list-style: none;
+    padding-bottom: 10px;
+}
+.nav a {
+    color: rgb(17, 243, 17);
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 4px 2px 4px 2px;
+    text-decoration: none;
+}
+.nav a:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(17, 243, 17);
+    text-decoration: underline;
+}
+
+.container{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(65, 65, 65);
+}
+.title{
+    margin-top: 20px;
+    color: white;
+}
+.chats{
+    background-color: rgb(34, 34, 34);
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.user{
+    display: flex;
+    align-items: center;
+    width: 400px;
+    padding: 4px;
+    margin-bottom: 2px;
+    background-color: rgb(64, 64, 64);
+    position: relative;
+    cursor: pointer;
+    color: white;
+}
+.user img{
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.active{
+    position: absolute;
+    top: 2px;
+    left: 35px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: rgb(17, 243, 17);
+}
+.user:hover{
+    background-color: rgb(207, 207, 207);
+    color: black;
+}

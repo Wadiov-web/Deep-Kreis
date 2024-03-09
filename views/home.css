@@ -1,0 +1,294 @@
+*{
+    /* background-color: rgb(21, 21, 21); */
+    padding: 0;
+    margin: 0;
+}
+
+.head{
+    background-color: rgb(21, 21, 21); 
+    color: rgb(215, 215, 215);
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.head h1{
+    margin-left: 10%;
+}
+.nav{
+    background-color: rgb(21, 21, 21); 
+    display: flex;
+    /* text-align: center;
+    align-items: center; */
+    justify-content: center;
+    list-style: none;
+    padding-bottom: 10px;
+}
+.nav a {
+    color: rgb(17, 243, 17);
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 4px 2px 4px 2px;
+    text-decoration: none;
+}
+.nav a:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(17, 243, 17);
+    text-decoration: underline;
+}
+
+.container{
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(65, 65, 65);
+}
+.create{
+    width: 300px;
+    background-color: rgb(50, 50, 50);
+    padding-top: 10px;
+    color: white;
+    padding-left: 10px;
+}
+.create div{
+    position: sticky;
+    top: 0;
+}
+.create textarea{
+    border: none;
+    padding: 2px;
+    outline-color: rgb(17, 243, 17);
+}
+.create button{
+    border: none;
+    padding: 5px;
+    width: 260px;
+    cursor: pointer;
+    background-color: rgb(17, 243, 17);
+    color: white;
+}
+.create button:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+.posts{
+    padding-top: 20px;
+    width: 700px;
+    /* height: 500px; */
+    background-color: rgb(42, 42, 42);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
+}
+.post{
+    width: 650px;
+    background-color: rgb(75, 75, 75);
+    padding: 10px;
+    color: white;
+    margin-bottom: 30px;
+}
+.user{
+    display: flex;
+    /* align-items: center; */
+    position: relative;
+}
+.user img{
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+}
+.postDate{
+    position: absolute;
+    left: 40px;
+    top: 20px;
+    font-size: 12px;
+}
+.content{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* display: flex; */
+}
+.content img {
+    margin-top: 10px;
+    width: 100%;
+}
+.reaction{
+    display: flex;
+    justify-content: center;
+}
+.reaction p {
+    padding: 5px 5px 5px 5px;
+    margin: 2px;
+    width: 100px;
+    text-align: center;
+    background-color: rgb(17, 243, 17);
+    cursor: pointer;
+}
+.reaction p:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+.addcomment{
+    background-color: aqua;
+    margin-top: 10px;
+}
+.addcomment input{
+    width: 100%;
+    height: 30px;
+    border: none;
+    padding: 2px;
+    outline-color: rgb(17, 243, 17);
+}
+
+.comments{
+    margin-top: 10px;
+    width: 100%;
+    height: 300px;
+    background-color: rgb(28, 28, 28);
+    /* visibility: hidden; */
+    display: none;
+    transition: 1s;
+    overflow-y: scroll;
+    padding: 5px;
+}
+
+#close{
+    background-color: rgb(17, 243, 17);
+    width: 35px;
+    padding: 2px;
+    right: 0;
+    left: auto;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+#close:hover{
+    background-color: white;
+    color: black;
+}
+.active{    
+    display: block;
+}
+
+
+.commentWrap{
+    /* background-color: rgb(0, 62, 62); */
+    padding: 3px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+.usercom{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.usercom div{
+    display: flex;
+}
+.usercom img{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    /* object-fit: cover; */
+}
+.usercom p{
+    font-size: 15px;
+    color: rgb(188, 188, 188);
+    margin-right: 5px;
+}
+
+.msg{
+    color: rgb(234, 234, 234);
+}
+
+.comments::-webkit-scrollbar{
+    width: 4px;
+}
+.comments::-webkit-scrollbar-thumb{
+    background-color: rgb(17, 243, 17);
+    
+}
+.comments::-webkit-scrollbar-track{
+    background-color: rgb(118, 118, 118);
+}
+.comments::-webkit-scrollbar-corner{
+    border-radius: 20px;
+}
+
+
+.addcomment{
+    position: relative;
+}
+.addComment{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.addComment span{
+    color: rgb(122, 122, 122);
+}
+
+.error::placeholder{
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.loading{
+    height: 50px;
+}
+
+
+svg{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    animation: rotate 4s linear infinite;
+}
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+svg circle{
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 2;
+    stroke: #00a1ff;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: animate 4s linear infinite;
+}
+@keyframes animate{
+    0%,100%{
+        stroke-dashoffset: 200;
+    }
+    50%{
+        stroke-dashoffset: 0;
+    }
+    50.1%{
+        stroke-dashoffset: 400;
+    }
+}

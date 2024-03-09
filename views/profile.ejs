@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css">
+    <title>Profile</title>
+</head>
+<body>
+    <div class="head">
+        <h1>Deep Kreis</h1>
+    </div>
+    
+    <div class="nav">
+        <a href="/"><li>Posts</li></a>
+        <a href="/chat"><li>Chat</li></a>
+        <a href="/post"><li>Create</li></a>
+        <a href="/community"><li>Community</li></a>
+        <a href="/profile"><li>Profile</li></a>
+    </div>
+
+    <div class="container">
+        <div class="profile">
+            <img id="image" src="<%= pic %>" onerror="standby()" alt="no pic">
+            <p><%= name %></p>
+
+            <form action="#">
+                <input type="file">
+                <button type="submit">change pic</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script>
+    function standby(){
+        document.querySelector('#image').src = './altpic.jpg'
+    }
+</script>
+</html>

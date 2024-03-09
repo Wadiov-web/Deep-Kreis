@@ -1,0 +1,74 @@
+*{
+    /* background-color: rgb(21, 21, 21); */
+    padding: 0;
+    margin: 0;
+}
+
+.head{
+    background-color: rgb(21, 21, 21); 
+    color: rgb(215, 215, 215);
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.head h1{
+    margin-left: 10%;
+}
+.nav{
+    background-color: rgb(21, 21, 21); 
+    display: flex;
+    /* text-align: center;
+    align-items: center; */
+    justify-content: center;
+    list-style: none;
+    padding-bottom: 10px;
+}
+.nav a {
+    color: rgb(17, 243, 17);
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 4px 2px 4px 2px;
+    text-decoration: none;
+}
+.nav a:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(17, 243, 17);
+    text-decoration: underline;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(65, 65, 65);
+}
+.create{
+    width: 600px;
+    background-color: rgb(50, 50, 50);
+    padding-top: 10px;
+    color: white;
+    padding-left: 10px;
+    text-align: center;
+}
+.create div{
+    position: sticky;
+    top: 0;
+}
+.create textarea{
+    border: none;
+    padding: 2px;
+    width: 480px;
+    margin-top: 10px;
+    outline-color: rgb(17, 243, 17);
+}
+.create button{
+    margin: 10px;
+    border: none;
+    padding: 5px;
+    width: 260px;
+    cursor: pointer;
+    background-color: rgb(17, 243, 17);
+    color: white;
+}
+.create button:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
