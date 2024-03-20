@@ -1,26 +1,31 @@
 *{
-    /* background-color: rgb(21, 21, 21); */
     padding: 0;
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .head{
     background-color: rgb(21, 21, 21); 
     color: rgb(215, 215, 215);
-    padding-top: 15px;
-    padding-bottom: 15px;
+    height: 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 .head h1{
     margin-left: 10%;
+    padding-top: 5px;
 }
 .nav{
     background-color: rgb(21, 21, 21); 
     display: flex;
-    /* text-align: center;
-    align-items: center; */
+    width: 100%;
     justify-content: center;
     list-style: none;
     padding-bottom: 10px;
+    position: fixed;
+    top: 40px;
+    
 }
 .nav a {
     color: rgb(17, 243, 17);
@@ -35,11 +40,15 @@
     text-decoration: underline;
 }
 
+
 .container{
+    margin-top: 70px;
     display: flex;
     justify-content: center;
-    background-color: rgb(65, 65, 65);
-    height: auto;
+    background-color: rgb(14, 14, 14);
+    height: 92.2vh;
+    color: white;
+    position: relative;
 }
 
 .profile{
@@ -55,6 +64,7 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 .profile button{
@@ -62,9 +72,143 @@
     padding: 4px;
     cursor: pointer;
     color: white;
+    width: 150px;
+    border-radius: 2px;
+    font-size: 14px;
     background-color: rgb(17, 243, 17);
 }
 .profile button:hover{
     color: black;
     background-color: white;
+}
+
+
+#signout{
+    position: absolute;
+    bottom: 150px;
+    right: 50%;
+    transform: translate(50%, 0);
+    background-color: rgb(17, 243, 17);
+    color: white;
+    width: 300px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 2px;
+}
+#signout:hover{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+}
+
+
+
+input[type="file"]{
+    display: none;
+}
+label{
+    display: inline-block;
+    background: rgb(99, 99, 99);
+    padding: 5px;
+    user-select: none;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+label:hover{
+    background: rgb(17, 243, 17);
+}
+
+label:active{
+    transform: scale(0.9);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 670px){
+
+
+    .head{
+        background-color: rgb(21, 21, 21); 
+        color: rgb(215, 215, 215);
+        height: 40px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+    }
+    .head h1{
+        margin-left: 10%;
+        padding-top: 5px;
+        font-size: 25px;
+    }
+    .nav{
+        background-color: rgb(21, 21, 21); 
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        list-style: none;
+        padding-bottom: 10px;
+        position: fixed;
+        top: 40px;
+    }
+    .nav a {
+        color: rgb(17, 243, 17);
+        margin-left: 6px;
+        margin-right: 6px;
+        padding: 4px 2px 4px 2px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+    .profile img{
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+     
+    #signout{
+        position: absolute;
+        bottom: 150px;
+        right: 50%;
+        transform: translate(50%, 0);
+        background-color: rgb(17, 243, 17);
+        color: white;
+        width: 230px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 2px;
+    }
 }

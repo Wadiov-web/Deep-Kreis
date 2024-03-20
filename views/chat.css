@@ -1,26 +1,34 @@
 *{
-    /* background-color: rgb(21, 21, 21); */
     padding: 0;
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: rgb(24, 24, 24);
 }
 
 .head{
     background-color: rgb(21, 21, 21); 
     color: rgb(215, 215, 215);
-    padding-top: 15px;
-    padding-bottom: 15px;
+    height: 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 .head h1{
     margin-left: 10%;
+    padding-top: 5px;
 }
 .nav{
     background-color: rgb(21, 21, 21); 
     display: flex;
-    /* text-align: center;
-    align-items: center; */
+    width: 100%;
     justify-content: center;
     list-style: none;
     padding-bottom: 10px;
+    position: fixed;
+    top: 40px;
+    
 }
 .nav a {
     color: rgb(17, 243, 17);
@@ -36,11 +44,15 @@
 }
 
 .container{
+    margin-top: 70px;
+
     display: flex;
     /* justify-content: center; */
     align-items: center;
     flex-direction: column;
-    background-color: rgb(65, 65, 65);
+    background-color: rgb(24, 24, 24);
+    height: 92.2vh;
+    color: white;
 }
 .title{
     margin-top: 20px;
@@ -51,6 +63,10 @@
     padding: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .user{
     display: flex;
@@ -62,17 +78,20 @@
     position: relative;
     cursor: pointer;
     color: white;
+    border-radius: 2px;
 }
 .user img{
     width: 35px;
     height: 35px;
     margin-right: 10px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .active{
     position: absolute;
-    top: 2px;
-    left: 35px;
+    top: 7px;
+    left: 32px;
     width: 7px;
     height: 7px;
     border-radius: 50%;
@@ -81,4 +100,364 @@
 .user:hover{
     background-color: rgb(207, 207, 207);
     color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.window{
+    width: 350px;
+    height: 400px;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    right: 30%;
+    bottom: 50px;
+    padding: 2px;
+    border-radius: 3px;
+}
+.toolbar{
+    width: 100%;
+    height: 20px;
+    display: flex;
+}
+#chatname{
+    margin-left: auto;
+    /* padding: px; */
+    font-weight: bold;
+    color: #11f311;
+}
+#close{
+    padding: 3px;
+    cursor: pointer;
+    width: 13px;
+    border-radius: 2px;
+    background-color: rgb(130, 130, 130);
+    
+}
+#close:hover{
+    background-color: white;
+    color: black;
+}
+.content{
+    width: 100%;
+    height: 350px;
+    background-color: rgb(40, 40, 40);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.msgMe{
+    background-color: rgb(230, 230, 230);
+    color: black;
+    width: fit-content;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px 5px 0px 5px;
+    border: 1px solid #11f311;
+    max-width: 250px;
+    margin-left: auto;
+}
+.msgHim{
+    background-color: #11f311;
+    color: black;
+    width: fit-content;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px 5px 5px 0px;
+    border: 1px solid #ffffff;
+    max-width: 250px;
+}
+
+
+
+.content::-webkit-scrollbar{
+    width: 4px;
+}
+.content::-webkit-scrollbar-thumb{
+    background-color: #11f311;
+    
+}
+.content::-webkit-scrollbar-track{
+    background-color: rgb(118, 118, 118);
+}
+.content::-webkit-scrollbar-corner{
+    border-radius: 20px;
+}
+
+.input{
+    width: 100%;
+    height: 30px;
+    background-color: rgb(29, 29, 29);
+}
+.input div{
+    display: flex;
+}
+#msginput{
+    width: 300px;
+    border: none;
+    outline: none;
+    padding-left: 4px;
+    background-color: rgb(29, 29, 29);
+    color: white;
+}
+.input button{
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 3px;
+    margin-right: 3px;
+    color: white;
+}
+.input button:hover{
+    color: rgb(17, 243, 17);
+}
+
+input[type="file"]{
+    display: none;
+}
+label{
+    display: inline-block;
+    /* background: rgb(99, 99, 99); */
+    padding: 2px;
+    user-select: none;
+    font-size: 8px;
+    cursor: pointer;
+    /* border-radius: 2px; */
+}
+/* label span{
+    font-size: 15px;
+} */
+label span:hover{
+    background: rgb(17, 243, 17);
+}
+label:active{
+    transform: scale(0.9);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 670px){
+    .head{
+        background-color: rgb(21, 21, 21); 
+        color: rgb(215, 215, 215);
+        height: 40px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+    }
+    .head h1{
+        margin-left: 10%;
+        padding-top: 5px;
+        font-size: 25px;
+    }
+    .nav{
+        background-color: rgb(21, 21, 21); 
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        list-style: none;
+        padding-bottom: 10px;
+        position: fixed;
+        top: 40px;
+    }
+    .nav a {
+        color: rgb(17, 243, 17);
+        margin-left: 6px;
+        margin-right: 6px;
+        padding: 4px 2px 4px 2px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+
+
+
+    .title{
+        margin-top: 20px;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+    }
+    .chats{
+        background-color: rgb(34, 34, 34);
+        padding: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .user{
+        display: flex;
+        align-items: center;
+        width: 275px;
+        padding: 4px;
+        margin-bottom: 2px;
+        background-color: rgb(64, 64, 64);
+        position: relative;
+        cursor: pointer;
+        color: white;
+        border-radius: 2px;
+    }
+    .user img{
+        width: 35px;
+        height: 35px;
+        margin-right: 10px;
+        border-radius: 50%;
+    }
+
+
+
+
+
+.window{
+    width: 95%;
+    height: 72vh;
+    /* background-color: rgb(159, 54, 54); */
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 80px;
+    padding: 2px;
+    border-radius: 3px;
+}
+
+
+.toolbar{
+    width: 100%;
+    height: 20px;
+    display: flex;
+}
+#chatname{
+    margin-left: auto;
+    /* padding: px; */
+    font-weight: bold;
+    color: #11f311;
+}
+#close{
+    padding: 3px;
+    cursor: pointer;
+    width: 13px;
+    border-radius: 2px;
+    background-color: rgb(130, 130, 130);
+    
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(40, 40, 40);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 10px;
+}
+.msgMe{
+    background-color: rgb(230, 230, 230);
+    color: black;
+    width: fit-content;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px 5px 0px 5px;
+    border: 1px solid #11f311;
+    max-width: 50%;
+    margin-left: auto;
+    font-size: 18px;
+}
+.msgHim{
+    background-color: #11f311;
+    color: black;
+    width: fit-content;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px 5px 5px 0px;
+    border: 1px solid #ffffff;
+    max-width: 50%;
+    font-size: 18px;
+}
+
+
+.input{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(29, 29, 29);
+}
+.input div{
+    display: flex;
+    align-items: center;
+}
+#msginput{
+    width: 90%;
+    border: none;
+    outline: none;
+    padding-left: 4px;
+    background-color: rgb(29, 29, 29);
+    color: white;
+    font-size: 18px;
+    height: 50px;
+}
+.input button{
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 3px;
+    margin-right: 3px;
+    color: white;
+}
+
 }

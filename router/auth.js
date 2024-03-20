@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch')
 require('dotenv').config()
 
-
 const clientID = process.env.CLIENTID
 const clientSecret = process.env.CLIENTSECRET
 const redirectURI = process.env.REDIRECTURI
@@ -17,6 +16,7 @@ async function codeTokenExchange(request){
 	const response = await data.json();
 	return response;
 }
+
 async function retrieveUserData(accessToken, idToken){
 	const url = `https://www.googleapis.com/oauth2/v3/userinfo`;
 	const userInfo = await axios.get(url, {

@@ -1,0 +1,174 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+
+.head{
+    background-color: rgb(21, 21, 21); 
+    color: rgb(215, 215, 215);
+    height: 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+.head h1{
+    margin-left: 10%;
+    padding-top: 5px;
+}
+
+
+
+.container{
+    padding-top: 120px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(14, 14, 14);
+    height: 86.6vh;
+    color: white;
+}
+.container h1{
+    color: rgb(17, 243, 17);
+}
+.introText{
+    /* background-color: aquamarine; */
+    color: rgb(201, 201, 201);
+    width: 600px;
+    margin: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+.container h2{
+    margin-bottom: 20px;
+}
+
+.signinBox{
+    /* background-color: aquamarine; */
+    width: 300px;
+    height: 300px;
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #11f311;
+    border-radius: 3px;
+}
+.signinBox h1{
+    margin-top: 20px;
+    font-size: 30px;
+}
+.signinBox a{
+    margin-top: 80px;
+    display: flex;
+    /* background-color: blueviolet; */
+    padding: 2px 0 2px 0;
+    color: white;
+    border: 1px solid #11f311;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+.signinBox a:hover{
+    background-color: white;
+    color: black;
+}
+.signinBox img{
+    width: 30px;
+    height: 30px;
+}
+.signinBox p{
+    margin-left: 5px;
+    font-size: 19px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 670px){
+
+
+    .head{
+        background-color: rgb(21, 21, 21); 
+        color: rgb(215, 215, 215);
+        height: 40px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+    }
+    .head h1{
+        margin-left: 10%;
+        padding-top: 5px;
+        font-size: 25px;
+    }
+
+
+  
+    .container h1{
+        color: rgb(17, 243, 17);
+        font-size: 22px;
+    }
+    .introText{
+        /* background-color: aquamarine; */
+        color: rgb(201, 201, 201);
+        width: 280px;
+        margin: 20px;
+        font-size: 15px;
+        text-align: center;
+    }
+    .container h2{
+        margin-bottom: 20px;
+    }
+    
+    .signinBox{
+        /* background-color: aquamarine; */
+        width: 270px;
+        height: 275px;
+        /* text-align: center; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #11f311;
+        border-radius: 3px;
+    }
+    .signinBox h1{
+        margin-top: 20px;
+        font-size: 22px;
+    }
+    .signinBox a{
+        margin-top: 80px;
+        display: flex;
+        /* background-color: blueviolet; */
+        padding: 4px 0 4px 0;
+        color: white;
+        border: 1px solid #11f311;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        border-radius: 3px;
+        text-decoration: none;
+    }
+    .signinBox img{
+        width: 20px;
+        height: 20px;
+    }
+    .signinBox p{
+        margin-left: 5px;
+        font-size: 16px;
+    }
+ 
+}

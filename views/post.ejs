@@ -4,33 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="post.css">
+    <link rel="icon" type="image/x-icon" href="./deepkreis-logo.png">
     <title>Create post</title>
 </head>
 <body>
-    <div class="head">
-        <h1>Deep Kreis</h1>
-    </div>
     
-    <div class="nav">
-        <a href="/"><li>Posts</li></a>
-        <a href="/chat"><li>Chat</li></a>
-        <a href="/post"><li>Create</li></a>
-        <a href="/community"><li>Community</li></a>
-        <a href="/profile"><li>Profile</li></a>
-    </div>
 
     <div class="container">
         <div class="create">
             <div>
                 <h1>Add value to your felow brothers!</h1>
-                <p style="color: red;"><%= msg %></p>
+                <p style="color: #d4d4d4;"><%= msg %></p>
                 <form action="/post" method="post" enctype="multipart/form-data">
-                    <textarea name="texte" id="" cols="30" rows="10" placeholder="Add here..."></textarea><br>
-                    <input name="image" type="file"><br>
+                    <textarea name="texte" placeholder="Add here..."></textarea><br><br>
+                    <label for="imageBtn">UPLOAD IMAGE</label>
+                    <input id="imageBtn" name="image" type="file"><br>
                     <button type="submit">Post</button>
                 </form>
             </div>
         </div>
+    </div>
+
+
+    <div class="head">
+        <h1>Deep Kreis</h1>
+    </div>
+    <div class="nav">
+        <a href="/"><li>Community</li></a>
+        <a href="/chat"><li>Chat</li></a>
+        <a href="/post"><li>Create</li></a>
+        <!-- <a href="/community"><li>Community</li></a> -->
+        <a href="/profile"><li>Profile</li></a>
     </div>
 
 </body>

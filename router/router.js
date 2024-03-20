@@ -6,84 +6,6 @@ const multer = require('multer')
 require('dotenv').config()
 
 
-
-
-router.get('/', (req, res) => {
-    dbController.getPostsChunk(0)
-    .then(posts => {
-        res.render('home', {posts})
-    }).catch(err => console.log(err))  
-    
-})
-router.get('/get-posts/:id', (req, res) => {
-    dbController.getPostsChunk(req.params.id)
-    .then(posts => {
-        setTimeout(() => res.json({posts}), 1*1*2000)
-        
-    }).catch(err => console.log(err))  
-})
-
-
-
-
-router.get('/get-post-likes/:id', (req, res) => {
-    dbController.getLikesByPostId(req.params.id)
-    .then(result => {
-        res.json({count: result.count})
-    }).catch(err => console.log(err))  
-})
-
-router.get('/comments/:id', (req, res) => {
-    dbController.getPostComments(req.params.id)
-    .then(result => {
-        res.json(result)
-    }).catch(err => console.log(err))
-})
-
-router.post('/comments/:id', (req, res) => {
-    console.log('post comments')
-    console.log(req.params.id)
-    console.log(req.body)
-
-    dbController.getWarriorById(req.session.warriorID)
-    .then(warrior => {
-        const comment = {cont: req.body.comment, post_id: req.params.id, commenter_id: warrior.id, commenter_name: warrior.username, commenter_pic: warrior.picture}
-        dbController.insertCommentToPost(comment)
-        .then(result => {
-            res.json({msg: 'success comment upload'})
-        }).catch(err => console.log(err))  
-
-    }).catch(err => console.log(err))
-})
-router.post('/likes/:id', async (req, res) => {
-    console.log('post likes')
-    console.log(req.params.id)
-  
-
-    const postIsLiked = await dbController.checkUserLikedPost(req.session.warriorID, req.params.id)
-    if(postIsLiked){
-        // remove like from post
-        console.log('remove like from post')
-        await dbController.removeLikeFromPost(req.session.warriorID, req.params.id)
-        res.json({msg: 'removed'})
-    } else {
-        // add like to post
-        console.log('add like to post')
-        await dbController.addLikeToPost(req.session.warriorID, req.params.id)
-        res.json({msg: 'added'})
-    }
-   
-})
-
-router.get('/chat', (req, res) => {
-    console.log(req.session)
-    res.render('chat')
-})
-router.get('/post', (req, res) => {
-    res.render('post', {msg: ''})
-})
-
-
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, __dirname + '../../uploads')
@@ -106,7 +28,97 @@ const upload = multer({
 })
 const handleFile = upload.single('image')
 
-router.post('/post', handleFile, (req, res) => {
+
+router.get('/', isAuth, (req, res) => {
+    dbController.getPostsChunk(0)
+    .then(posts => {
+        dbController.getWarriorById(req.session.warriorID)
+        .then(warrior => {
+            res.render('home', {posts, warrior})
+        }).catch(err => console.log(err))  
+    }).catch(err => console.log(err))  
+})
+
+
+router.get('/get-posts/:id', isAuth, (req, res) => {
+    dbController.getPostsChunk(req.params.id)
+    .then(posts => {
+        setTimeout(() => res.json({posts}), 1*1*2000)
+        
+    }).catch(err => console.log(err))  
+})
+
+
+router.get('/get-post-likes/:id', isAuth, (req, res) => {
+    dbController.getLikesByPostId(req.params.id)
+    .then(result => {
+        res.json({count: result.count})
+    }).catch(err => console.log(err))  
+})
+
+
+router.get('/comments/:id', isAuth, (req, res) => {
+    dbController.getPostComments(req.params.id)
+    .then(result => {
+        res.json(result)
+    }).catch(err => console.log(err))
+})
+
+
+router.post('/comments/:id', isAuth, (req, res) => {
+    dbController.getWarriorById(req.session.warriorID)
+    .then(warrior => {
+        const comment = {cont: req.body.comment, post_id: req.params.id, commenter_id: warrior.id, commenter_name: warrior.username, commenter_pic: warrior.picture}
+        dbController.insertCommentToPost(comment)
+        .then(result => {
+            res.json({msg: 'success comment upload'})
+        }).catch(err => console.log(err))  
+
+    }).catch(err => console.log(err))
+})
+
+
+router.post('/likes/:id', isAuth, async (req, res) => {
+    const postIsLiked = await dbController.checkUserLikedPost(req.session.warriorID, req.params.id)
+    if(postIsLiked){
+        // remove like from post
+        //console.log('remove like from post')
+        await dbController.removeLikeFromPost(req.session.warriorID, req.params.id)
+        res.json({msg: 'removed'})
+    } else {
+        // add like to post
+        //console.log('add like to post')
+        await dbController.addLikeToPost(req.session.warriorID, req.params.id)
+        res.json({msg: 'added'})
+    }
+})
+
+router.get('/chat', isAuth, (req, res) => {
+    dbController.getWarriorById(req.session.warriorID)
+    .then(warrior => {
+        dbController.getWarriors(req.session.warriorID)
+        .then(warriors => {
+            res.render('chat', {warrior, warriors})
+        }).catch(err => console.log(err))  
+    }).catch(err => console.log(err))  
+})
+
+
+router.post('/get-messages', isAuth, (req, res) => {
+    const {warriorId, fellowId} = req.body
+    dbController.getMessages(warriorId, fellowId)
+    .then(result => {
+        res.json(result)
+    }).catch(err => console.log(err)) 
+})
+
+
+router.get('/post', isAuth, (req, res) => {
+    res.render('post', {msg: ''})
+})
+
+
+router.post('/post', isAuth, handleFile, (req, res) => {
     if(req.body.texte){
         dbController.getWarriorById(req.session.warriorID)
         .then(warrior => {
@@ -130,33 +142,47 @@ router.post('/post', handleFile, (req, res) => {
     }
 })
 
-router.get('/profile', (req, res) => {
-    console.log('profile route')
-    console.log(req.session)
+
+router.post('/update-pic', isAuth, handleFile, (req, res) => {
+    dbController.getWarriorById(req.session.warriorID)
+    .then(warrior => {
+        if(req.file){
+            dbController.updateProfilePic(req.file.filename, req.session.warriorID)
+            .then(result => {
+                res.render('profile', {name: warrior.username, pic: warrior.picture, msg: 'Profile picture is updated'})
+            }).catch(err => console.log(err))
+        } else {
+            res.render('profile', {name: warrior.username, pic: warrior.picture, msg: 'Please upload picture'})
+        }
+    }).catch(err => console.log(err))
+})
+
+
+router.get('/profile', isAuth, (req, res) => {
     dbController.getWarriorById(req.session.warriorID)
     .then(warrior => {
         console.log(warrior)
-        res.render('profile', {name: warrior.username, pic: warrior.picture})
+        res.render('profile', {name: warrior.username, pic: warrior.picture, msg: ''})
     })
 })
+
 
 const clientID = process.env.CLIENTID
 const redirectURI = process.env.REDIRECTURI
 const scope = process.env.SCOPE
-
 const URL = `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${redirectURI}&client_id=${clientID}&access_type=offline&response_type=code&prompt=consent&scope=${scope}`;
 
-router.get('/signin', (req, res) => {
+
+router.get('/signin', notAuth, (req, res) => {
     res.render('signin', {URL})
 })
 
 
-
-router.get('/auth/google/callback', async (req,res) => {
+router.get('/auth/google/callback', notAuth, async (req,res) => {
 	// Back chanel request
 	try{
 		const response = await auth.codeTokenExchange(req);
-        console.log(response)
+        // console.log(response)
 		if(response.error){
 			console.log('user canceled the access')
 			res.redirect('/signin')
@@ -197,11 +223,39 @@ router.get('/auth/google/callback', async (req,res) => {
 
 
 router.get('/app/privacy-policy', (req, res) => {
-	res.send('Welcome to Cool Brand app privacy policy');
+	res.render('privacy-policy');
 });                                        
 
+
 router.get('/app/terms-of-service', (req, res) => {
-	res.send('Welcome to Cool Brand app terms of service');
+	res.render('terms-of-service');
 });        
+
+
+function isAuth(req, res, next){
+    if(req.session.warriorID) {
+        return next()
+    } else {
+        return res.redirect('/signin')
+    }
+}
+function notAuth(req, res, next){
+    if(req.session.warriorID) {
+        return res.redirect('/')
+    } else {
+        return next()
+    }
+}
+
+
+router.post('/signout', isAuth, (req, res) => {
+    req.session.destroy(err => {
+        if(err) {
+            return res.redirect('/')
+        } 
+        return res.redirect('/signin')
+    })
+});     
+
 
 module.exports = router
