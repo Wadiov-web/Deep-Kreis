@@ -3,7 +3,7 @@ let loopNum = 0
 function addUIfunctionality(){
     const posts = document.querySelectorAll('.post')
     for(let i = loopNum; i < posts.length; i++) {
-        console.log(i)
+        // console.log(i)
         const comments = posts[i].querySelector('.comments')
         const postCommts = posts[i].querySelector('.postCommts')
         const cbtn = posts[i].querySelector('#commentbtn')
@@ -14,12 +14,9 @@ function addUIfunctionality(){
             comments.classList.remove('active')
         })
         cbtn.addEventListener('click', () => {
-            console.log('Post ID')
-            console.log(postId.innerHTML)
             fetch(`/comments/${parseInt(postId.innerHTML)}`)
             .then(data => data.json())
             .then(allcommts => {
-                console.log(allcommts)
                 postCommts.innerHTML = ''
                 allcommts.reverse().forEach(comment => {
                     const commentWrap = document.createElement('div')
@@ -37,11 +34,6 @@ function addUIfunctionality(){
                     
                     const d = comment.created_at.toString().split('T')
                     ptime.innerHTML = `${d[0]}`
-                    // const d = comment.created_at.toString()
-                    // const f = new Intl.DateTimeFormat("en-us", {
-                    //     dateStyle: "full"
-                    // })
-                    //ptime.innerHTML = d
                     text.innerHTML = comment.cont
                     div.appendChild(pname)
                     div.appendChild(ptime)
@@ -58,9 +50,6 @@ function addUIfunctionality(){
         const commentinput = posts[i].querySelector('.commentinput')
         const addComment = posts[i].querySelector('.addComment')
         addComment.addEventListener('click', () => {
-            console.log('Post ID')
-            console.log(postId.innerHTML)
-            console.log(commentinput.value)
             if(commentinput.value !== ''){
                 fetch(`/comments/${parseInt(postId.innerHTML)}`, {
                     method: "POST",
@@ -80,10 +69,7 @@ function addUIfunctionality(){
         })
         // add remove likes
         const likebtn = posts[i].querySelector('#likebtn')
-        //console.log(likebtn)
         likebtn.addEventListener('click', () => {
-            console.log('Post ID from likes')
-            console.log(postId.innerHTML)
             fetch(`/likes/${parseInt(postId.innerHTML)}`, {method: "POST"})
             .then(data => data.json())
             .then(res => {
@@ -107,120 +93,110 @@ addUIfunctionality()
 const container = document.querySelector('.container')
 const loading = document.createElement('div')
 loading.classList.add('loading')
-//loading.innerHTML = '<h1>Loading feed...</h1>'
 container.appendChild(loading)
 let shouldAdd = true
 let shouldFetch = true
+let shouldExecute = true
 
 const postsDiv = document.querySelector('.posts')
 
 window.addEventListener('scroll', () => {
-    // console.log('window.innerHeight')
-    // console.log(window.innerHeight)
-    // console.log('window.scrollY')
-    // console.log(window.scrollY)
 
-    // console.log('window.innerHeight + window.scrollY')
-    // console.log(window.innerHeight + window.scrollY)
-    // console.log('scrollHeight')
-    // console.log(document.body.scrollHeight)
-    // console.log('document.body.offsetHeight')
-    // console.log(document.body.offsetHeight)
-    if((window.innerHeight + window.scrollY)-69.4 >= document.body.scrollHeight){
-        console.log('Scroll is triggered')
+    if((window.innerHeight + window.scrollY) >= document.body.scrollHeight){
+        // console.log('Scroll is triggered')
         if(shouldAdd == true) loading.innerHTML = `
         <svg>
             <circle cx="15" cy="15" r="15"></circle>
         </svg>
         `
-        
-        if(shouldFetch == true){
-            fetch(`/get-posts/${startNum}`)
-            .then(data => data.json())
-            .then(res => {
-                // console.log('array > 0')
-                //console.log(res.post)
-                //startNum += 10
-                if(res.posts.length > 0){
-                    console.log('array > 0')
-                    console.log(res)
-                    res.posts.forEach(post => {
-                        const div = document.createElement('div')
-                        div.classList.add('post')
-                        const d = post.created_at.toString().split(' ')
-                        //console.log(d)
-                        if(post.post_pic !== null){
-                            div.innerHTML = `
-                                <p class="postId" hidden>${post.id}</p>
-                                <div class="user">
-                                    <img src="${post.warrior_pic}" alt="no">
-                                    <p class="username">${post.warrior_name}</p>
-                                    <p class="postDate">${d[0]}</p>
-                                </div>
-                                <div class="content">
-                                    <p>${post.texte}</p>
-                                    <img src="/${post.post_pic}" alt="no">
-                                </div>
-                                <div class="reaction">
-                                    <p id="likebtn">likes</p>
-                                    <p id="commentbtn">comments</p>
-                                </div>
-                                <div class="addcomment">
-                                    <input class="commentinput" type="text" placeholder=" Add comment...">
-                                    <button class="addComment">
-                                        <span id="addComment" class="material-symbols-outlined">send</span>
-                                    </button>
-                                </div>
-                                <div class="comments">
-                                    <p id="close">close</p>
-                                    <div class="postCommts">
-                                        
+        if(shouldExecute == true){
+            shouldExecute = false
+            if(shouldFetch == true){
+                fetch(`/get-posts/${startNum}`)
+                .then(data => data.json())
+                .then(res => {
+
+                    if(res.posts.length > 0){
+                        // console.log('array > 0')
+                        // console.log(res)
+                        res.posts.forEach(post => {
+                            const div = document.createElement('div')
+                            div.classList.add('post')
+                            const d = post.created_at.toString().split(' ')
+                            const perfectDate = d[0].split("T")
+                            if(post.post_pic !== null){
+                                div.innerHTML = `
+                                    <p class="postId" hidden>${post.id}</p>
+                                    <div class="user">
+                                        <img src="${post.warrior_pic}" alt="no">
+                                        <p class="username">${post.warrior_name}</p>
+                                        <p class="postDate">${perfectDate[0]}</p>
                                     </div>
-                                </div>`
-                            postsDiv.appendChild(div)
-                        } else {
-                            div.innerHTML = `
-                                <p class="postId" hidden>${post.id}</p>
-                                <div class="user">
-                                    <img src="${post.warrior_pic}" alt="no">
-                                    <p class="username">${post.warrior_name}</p>
-                                    <p class="postDate">${d[0]}</p>
-                                </div>
-                                <div class="content">
-                                    <p>${post.texte}</p>
-                                </div>
-                                <div class="reaction">
-                                    <p id="likebtn">likes</p>
-                                    <p id="commentbtn">comments</p>
-                                </div>
-                                <div class="addcomment">
-                                    <input class="commentinput" type="text" placeholder=" Add comment...">
-                                    <button class="addComment">
-                                        <span id="addComment" class="material-symbols-outlined">send</span>
-                                    </button>
-                                </div>
-                                <div class="comments">
-                                    <p id="close">close</p>
-                                    <div class="postCommts">
-                                        
+                                    <div class="content">
+                                        <p>${post.texte}</p>
+                                        <img src="/${post.post_pic}" alt="no">
                                     </div>
-                                </div>`
-                            postsDiv.appendChild(div)
-                        }
-                    })
-                    addUIfunctionality()
-                    //startNum += 10
-                    console.log(startNum)
-                } 
-                if(res.posts.length <= 0){
-                    console.log('array < 0')
-                    console.log(res.post)
-                    loading.innerHTML = ''   
-                    shouldAdd = false     
-                    shouldFetch = false
-                }
-            })
-            startNum += 10
+                                    <div class="reaction">
+                                        <p id="likebtn">likes</p>
+                                        <p id="commentbtn">comments</p>
+                                    </div>
+                                    <div class="addcomment">
+                                        <input class="commentinput" type="text" placeholder=" Add comment...">
+                                        <button class="addComment">
+                                            <span id="addComment" class="material-symbols-outlined">send</span>
+                                        </button>
+                                    </div>
+                                    <div class="comments">
+                                        <p id="close">close</p>
+                                        <div class="postCommts">
+                                            
+                                        </div>
+                                    </div>`
+                                postsDiv.appendChild(div)
+                            } else {
+                                div.innerHTML = `
+                                    <p class="postId" hidden>${post.id}</p>
+                                    <div class="user">
+                                        <img src="${post.warrior_pic}" alt="no">
+                                        <p class="username">${post.warrior_name}</p>
+                                        <p class="postDate">${perfectDate[0]}</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>${post.texte}</p>
+                                    </div>
+                                    <div class="reaction">
+                                        <p id="likebtn">likes</p>
+                                        <p id="commentbtn">comments</p>
+                                    </div>
+                                    <div class="addcomment">
+                                        <input class="commentinput" type="text" placeholder=" Add comment...">
+                                        <button class="addComment">
+                                            <span id="addComment" class="material-symbols-outlined">send</span>
+                                        </button>
+                                    </div>
+                                    <div class="comments">
+                                        <p id="close">close</p>
+                                        <div class="postCommts">
+                                            
+                                        </div>
+                                    </div>`
+                                postsDiv.appendChild(div)
+                            }
+                        })
+                        addUIfunctionality()
+                        // console.log(startNum)
+                    } 
+                    if(res.posts.length <= 0){
+                        // console.log('array < 0')
+                        // console.log(res.post)
+                        loading.innerHTML = ''   
+                        shouldAdd = false     
+                        shouldFetch = false
+                    }
+                    shouldExecute = true
+                })
+                startNum += 10
+            }
         }
     }
 })
